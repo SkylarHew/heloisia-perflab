@@ -4,6 +4,35 @@ Understanding basic matrix convolutions and basic image representation is crucia
  - A convolution takes *n* x *n* pixels, multiplies them each by a value specified by the filter class, and then adds all pixels together giving the resulting (output) vector.
  - Each filter is defined to be size *n* x *n*, where each index corresponds to a scalar of which the (i,j)th pixel vector will be scaled by.
  - Each pixel is a 3 x 1 vector that holds the (R)ed, (G)reen, (B)lue values of each pixel.
+```math
+\begin{pmatrix}
+R\\
+G\\
+B
+\end{pmatrix}
+```
+ - Our filter matrix is represented by
+```math
+\begin{pmatrix}
+f_{0,0} & f_{0,1} & f_{0,2}\\
+f_{1,0} & f_{1,1} & f_{1,2}\\
+f_{2,0} & f_{2,1} & f_{2,2}
+\end{pmatrix}
+```
+ - Our resulting computation for the pixel at output location 1,1 (using input data centered around 1,1)
+ ```math
+\begin{pmatrix}
+red_{1,1}\\
+green_{1,1}\\
+blue_{1,1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+f_{0,0}R_{0,0} + f_{0,1}R_{0,1} + f_{0,2}R_{0,2} + f_{1,0}R_{1,0} + ... + f_{2,2}R_{2,2}\\
+f_{0,0}G_{0,0} + f_{0,1}G_{0,1} + f_{0,2}G_{0,2} + f_{1,0}G_{1,0} + ... + f_{2,2}G_{2,2}\\
+f_{0,0}B_{0,0} + f_{0,1}B_{0,1} + f_{0,2}B_{0,2} + f_{1,0}B_{1,0} + ... + f_{2,2}B_{2,2}
+\end{pmatrix}
+```
  - Within our project, images are encoded such that each "plane" is a different color channel, representing R, G, or B. Thus, our color matrix stores the 3 color channels for each pixel at position (row, col)
  ```c++
 // color[plane][row][column]
